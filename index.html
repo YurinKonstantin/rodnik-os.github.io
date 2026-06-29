@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Родник OS — Российская операционная система</title>
+    <meta name="description" content="Родник OS — современная российская операционная система с нативной поддержкой .NET, экосистемой как у Apple и защитой Касперского.">
+    <style>
+        :root {
+            --bg: #0a0e14;
+            --surface: #141b22;
+            --surface2: #1a2332;
+            --border: #2a3644;
+            --text: #e6edf3;
+            --text-dim: #8b949e;
+            --accent: #58a6ff;
+            --accent2: #3fb950;
+            --accent3: #f0883e;
+            --red: #f85149;
+            --gradient: linear-gradient(135deg, #58a6ff 0%, #3fb950 100%);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        
+        nav {
+            background: rgba(10,14,20,0.9);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(20px);
+        }
+        nav .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo {
+            font-size: 26px;
+            font-weight: 800;
+            text-decoration: none;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .nav-links { display: flex; gap: 24px; align-items: center; }
+        .nav-links a { color: var(--text-dim); text-decoration: none; font-size: 15px; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--text); }
+        
+        .btn {
+            padding: 10px 22px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        .btn-primary { background: var(--accent2); color: #000; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(63,185,80,0.3); }
+        .btn-outline { border: 2px solid var(--border); color: var(--text); }
+        .btn-outline:hover { border-color: var(--accent); background: rgba(88,166,255,0.1); }
+        .btn-accent { background: var(--accent); color: #000; }
+        
+        .hero {
+            padding: 120px 0 100px;
+            text-align: center;
+            background: radial-gradient(circle at 50% 50%, rgba(88,166,255,0.08) 0%, transparent 50%);
+        }
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            font-size: 14px;
+            color: var(--accent);
+            margin-bottom: 24px;
+        }
+        .hero h1 { font-size: 56px; font-weight: 900; margin-bottom: 24px; line-height: 1.1; }
+        .hero h1 span { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero p { font-size: 20px; color: var(--text-dim); max-width: 650px; margin: 0 auto 40px; }
+        .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+        
+        section { padding: 100px 0; }
+        .section-title { font-size: 40px; font-weight: 800; text-align: center; margin-bottom: 16px; }
+        .section-subtitle { font-size: 18px; color: var(--text-dim); text-align: center; max-width: 600px; margin: 0 auto 60px; }
+        
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 36px;
+            transition: all 0.3s;
+        }
+        .card:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.3); }
+        .card-icon { font-size: 40px; margin-bottom: 20px; }
+        .card h3 { font-size: 20px; margin-bottom: 12px; }
+        .card p { color: var(--text-dim); font-size: 15px; }
+        
+        .ecosystem-flow {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin: 60px 0;
+        }
+        .eco-device {
+            text-align: center;
+            padding: 40px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            min-width: 180px;
+        }
+        .eco-device .icon { font-size: 60px; margin-bottom: 16px; }
+        .eco-arrow { font-size: 36px; color: var(--accent); }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-top: 40px;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+        .comparison-table th { background: var(--surface2); padding: 16px 20px; text-align: left; font-weight: 600; font-size: 14px; }
+        .comparison-table td { padding: 16px 20px; border-top: 1px solid var(--border); font-size: 14px; }
+        .yes { color: var(--accent2); font-weight: 700; }
+        .no { color: var(--red); }
+        .partial { color: var(--accent3); }
+        
+        .cta {
+            background: var(--surface);
+            border-radius: 24px;
+            text-align: center;
+            margin: 60px 0;
+            padding: 80px 40px;
+            border: 1px solid var(--border);
+        }
+        .cta h2 { font-size: 36px; margin-bottom: 16px; }
+        .cta p { color: var(--text-dim); font-size: 18px; margin-bottom: 32px; }
+        
+        footer { border-top: 1px solid var(--border); padding: 60px 0 30px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        .footer-col h4 { font-size: 16px; margin-bottom: 16px; }
+        .footer-col a { display: block; color: var(--text-dim); text-decoration: none; font-size: 14px; margin-bottom: 8px; }
+        .footer-col a:hover { color: var(--accent); }
+        .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid var(--border); color: var(--text-dim); font-size: 14px; }
+        
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 36px; }
+            .hero p { font-size: 16px; }
+            .section-title { font-size: 28px; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">Родник OS</a>
+            <div class="nav-links">
+                <a href="#features">Возможности</a>
+                <a href="#ecosystem">Экосистема</a>
+                <a href="#security">Безопасность</a>
+                <a href="#comparison">Сравнение</a>
+                <a href="#roadmap">Дорожная карта</a>
+                <a href="developer.html">Разработчикам</a>
+                <a href="license.html">Лицензии</a>
+                <a href="#donate" class="btn btn-outline">Поддержать</a>
+            </div>
+        </div>
+    </nav>
+    
+    <section class="hero">
+        <div class="container">
+            <div class="hero-badge">🚀 Первый релиз — январь 2027</div>
+            <h1>Отечественная ОС<br><span>с экосистемой как у Apple</span></h1>
+            <p>Родник OS — современная российская операционная система. Нативная поддержка .NET, защита Касперского, единая экосистема с Android-смартфоном через Яндекс.Облако.</p>
+            <div class="hero-buttons">
+                <a href="#download" class="btn btn-primary">Скачать ISO (скоро)</a>
+                <a href="#ecosystem" class="btn btn-outline">Как это работает</a>
+            </div>
+        </div>
+    </section>
+    
+    <section id="features">
+        <div class="container">
+            <h2 class="section-title">Что делает Родник особенным</h2>
+            <p class="section-subtitle">Мы не копируем Windows. Мы создаём то, чего не хватает российскому рынку.</p>
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-icon">🇷🇺</div>
+                    <h3>Технологический суверенитет</h3>
+                    <p>Полностью российская разработка. Никакой зависимости от Microsoft, Apple или Google. Ваш цифровой дом — в России.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">⚡</div>
+                    <h3>Нативный .NET</h3>
+                    <p>Корпоративные приложения на .NET работают быстрее, чем на Windows. Никаких эмуляторов и прослоек.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🛡️</div>
+                    <h3>Касперский из коробки</h3>
+                    <p>Встроенная защита Kaspersky Security. Антивирус, файрвол, защита от шифровальщиков — всё в комплекте.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">📱💻☁️</div>
+                    <h3>Единая экосистема</h3>
+                    <p>Телефон (Android) + ПК (Родник) + Облако (Яндекс.Диск). Общий буфер обмена, синхронизация паролей, Continuity.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🔒</div>
+                    <h3>ГОСТ-криптография</h3>
+                    <p>Российские стандарты шифрования из коробки. Сертификаты Минцифры. Защита персональных данных по 152-ФЗ.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🏪</div>
+                    <h3>Магазин приложений</h3>
+                    <p>Собственный формат .rodnik. Установка в один клик. Автообновления. Модерация безопасности.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="ecosystem">
+        <div class="container">
+            <h2 class="section-title">Экосистема как у Apple. Только российское.</h2>
+            <p class="section-subtitle">Ваш телефон, компьютер и облако работают как единое целое.</p>
+            <div class="ecosystem-flow">
+                <div class="eco-device">
+                    <div class="icon">📱</div>
+                    <h3>Android</h3>
+                    <p style="color: var(--text-dim);">Яндекс.Ключ<br>Алиса<br>2FA-коды</p>
+                </div>
+                <div class="eco-arrow">⟷</div>
+                <div class="eco-device" style="border-color: var(--accent); box-shadow: 0 0 40px rgba(88,166,255,0.15);">
+                    <div class="icon">💻</div>
+                    <h3>Родник OS</h3>
+                    <p style="color: var(--text-dim);">Общий буфер<br>Continuity<br>Уведомления</p>
+                </div>
+                <div class="eco-arrow">⟷</div>
+                <div class="eco-device">
+                    <div class="icon">☁️</div>
+                    <h3>Яндекс.Диск</h3>
+                    <p style="color: var(--text-dim);">Бэкапы<br>Файлы<br>Пароли</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="security" style="background: var(--surface);">
+        <div class="container">
+            <h2 class="section-title">Безопасность корпоративного уровня</h2>
+            <p class="section-subtitle">Защита, которой доверяют крупнейшие компании России.</p>
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-icon">🛡️</div>
+                    <h3>Kaspersky Security</h3>
+                    <p>Встроенный антивирус Касперского. Защита от вирусов, троянов, шифровальщиков. Автоматические обновления баз.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🔐</div>
+                    <h3>ГОСТ-криптография</h3>
+                    <p>Шифрование диска по ГОСТ 28147-89. Электронная подпись по ГОСТ Р 34.10-2012. Сертификаты Минцифры.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">📦</div>
+                    <h3>Контейнеризация</h3>
+                    <p>Каждое приложение в изолированном контейнере. Вирус в одной программе не получит доступ к остальной системе.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="comparison">
+        <div class="container">
+            <h2 class="section-title">Сравнение</h2>
+            <p class="section-subtitle">Почему Родник — это не «ещё один Linux»</p>
+            <table class="comparison-table">
+                <thead>
+                    <tr><th>Характеристика</th><th>Родник OS</th><th>Windows 11</th><th>Linux</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Отечественная разработка</td><td class="yes">✓</td><td class="no">✗</td><td class="partial">Частично</td></tr>
+                    <tr><td>Нативный .NET</td><td class="yes">✓</td><td class="yes">✓</td><td class="no">✗</td></tr>
+                    <tr><td>Встроенный антивирус</td><td class="yes">Касперский</td><td class="partial">Defender</td><td class="no">✗</td></tr>
+                    <tr><td>Экосистема телефон+ПК</td><td class="yes">✓</td><td class="partial">Phone Link</td><td class="no">✗</td></tr>
+                    <tr><td>ГОСТ-криптография</td><td class="yes">✓</td><td class="no">✗</td><td class="partial">Плагины</td></tr>
+                    <tr><td>Облачные бэкапы</td><td class="yes">Яндекс.Диск</td><td class="partial">OneDrive</td><td class="no">✗</td></tr>
+                    <tr><td>Магазин приложений</td><td class="yes">✓</td><td class="yes">Microsoft Store</td><td class="partial">Разные</td></tr>
+                    <tr><td>Нет телеметрии</td><td class="yes">✓</td><td class="no">✗</td><td class="yes">✓</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+    
+    <section id="roadmap">
+        <div class="container">
+            <h2 class="section-title">Дорожная карта</h2>
+            <p class="section-subtitle">Путь к релизу 0.1.0 в январе 2027</p>
+            <div class="grid-3">
+                <div class="card"><div class="card-icon">✅</div><h3>Этап 0-1</h3><p>Инфраструктура, композитор, .NET Runtime</p><p style="color: var(--accent2);">Готово</p></div>
+                <div class="card"><div class="card-icon">🔄</div><h3>Этап 2</h3><p>Оболочка, VFS, панель задач, Android USB</p><p style="color: var(--accent);">В процессе</p></div>
+                <div class="card"><div class="card-icon">📅</div><h3>Этап 3</h3><p>Графика, Wi-Fi Android, зеркалирование</p><p style="color: var(--text-dim);">Сентябрь 2026</p></div>
+                <div class="card"><div class="card-icon">🔒</div><h3>Этап 4</h3><p>Безопасность, Яндекс.Диск, Kaspersky</p><p style="color: var(--text-dim);">Октябрь 2026</p></div>
+                <div class="card"><div class="card-icon">🔧</div><h3>Этап 5</h3><p>SDK, IL-транслятор, магазин приложений</p><p style="color: var(--text-dim);">Ноябрь 2026</p></div>
+                <div class="card"><div class="card-icon">🚀</div><h3>Этап 6-7</h3><p>Полировка, тестирование, релиз 0.1.0</p><p style="color: var(--text-dim);">Январь 2027</p></div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="donate">
+        <div class="container">
+            <div class="cta">
+                <h2>Поддержите разработку</h2>
+                <p>Родник OS создаётся независимой командой из России.<br>Ваша поддержка помогает оплачивать серверы, оборудование и труд разработчиков.</p>
+                <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+                    <a href="https://boosty.to/rodnik-os" class="btn btn-primary" style="background: #f15a24;">Boosty (для РФ)</a>
+                    <a href="https://github.com/sponsors/rodnik-os" class="btn btn-outline">GitHub Sponsors</a>
+                </div>
+                <p style="color: var(--text-dim); margin-top: 24px; font-size: 14px;">Все спонсоры получают ранний доступ к сборкам и закрытый чат с командой.</p>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Родник OS</h4>
+                    <a href="/">Главная</a>
+                    <a href="#ecosystem">Экосистема</a>
+                    <a href="#security">Безопасность</a>
+                    <a href="license.html">Лицензии</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Разработчикам</h4>
+                    <a href="developer.html">SDK и документация</a>
+                    <a href="https://github.com/rodnik-os">GitHub</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Поддержка</h4>
+                    <a href="#donate">Поддержать проект</a>
+                    <a href="mailto:info@rodnik-os.ru">info@rodnik-os.ru</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 ООО «Родник». Сделано в России 🇷🇺</p>
+                <p style="margin-top: 8px;">📱 + 💻 + ☁️ = Единая экосистема. Как Apple. Только российское.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

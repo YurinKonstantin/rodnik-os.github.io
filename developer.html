@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Разработчикам — Родник OS</title>
+    <style>
+        :root {
+            --bg: #0a0e14; --surface: #141b22; --border: #2a3644;
+            --text: #e6edf3; --text-dim: #8b949e; --accent: #58a6ff; --accent2: #3fb950;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+        .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+        nav { background: rgba(10,14,20,0.9); border-bottom: 1px solid var(--border); padding: 16px 0; }
+        nav .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 26px; font-weight: 800; text-decoration: none; background: linear-gradient(135deg, #58a6ff 0%, #3fb950 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .nav-links { display: flex; gap: 24px; }
+        .nav-links a { color: var(--text-dim); text-decoration: none; font-size: 15px; }
+        .nav-links a:hover { color: var(--text); }
+        section { padding: 80px 0; }
+        h1 { font-size: 42px; text-align: center; margin-bottom: 16px; }
+        .subtitle { text-align: center; color: var(--text-dim); font-size: 18px; margin-bottom: 60px; }
+        h2 { font-size: 28px; margin: 40px 0 20px; }
+        .code-block { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 20px; overflow-x: auto; margin: 16px 0; }
+        .code-block code { font-family: 'Consolas', monospace; font-size: 14px; color: var(--accent); }
+        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; }
+        .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-align: center; }
+        .card .num { width: 40px; height: 40px; background: var(--accent); color: #000; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 18px; margin: 0 auto 16px; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        table td { padding: 12px; border-bottom: 1px solid var(--border); }
+        table td:first-child { color: var(--text-dim); }
+        .btn { padding: 10px 22px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; display: inline-block; transition: all 0.3s; }
+        .btn-primary { background: var(--accent2); color: #000; }
+        footer { border-top: 1px solid var(--border); padding: 40px 0; text-align: center; color: var(--text-dim); font-size: 14px; }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">Родник OS</a>
+            <div class="nav-links">
+                <a href="/">Главная</a>
+                <a href="license.html">Лицензии</a>
+            </div>
+        </div>
+    </nav>
+    
+    <section>
+        <div class="container">
+            <h1>Разработчикам</h1>
+            <p class="subtitle">Создавайте приложения для ОС «Родник» с помощью современных инструментов</p>
+            
+            <h2>Быстрый старт (3 шага)</h2>
+            <div class="grid-2">
+                <div class="card"><div class="num">1</div><h3>Установите SDK</h3><p>Скачайте Rodnik.Build SDK для вашей ОС</p></div>
+                <div class="card"><div class="num">2</div><h3>Создайте проект</h3><p>Используйте шаблоны Avalonia UI или мигрируйте .NET-проект</p></div>
+                <div class="card"><div class="num">3</div><h3>Опубликуйте</h3><p>Соберите .rodnik пакет и загрузите в магазин</p></div>
+            </div>
+            
+            <h2>IL-транслятор</h2>
+            <p style="color: var(--text-dim);">Мигрируйте .NET-приложения без изменения кода</p>
+            <div class="code-block"><code>dotnet build MyApp.csproj --target=rodnik<br># Результат: MyApp.rodnik</code></div>
+            
+            <h2>Технологический стек</h2>
+            <table>
+                <tr><td>Язык</td><td>C# 12 (.NET 8)</td></tr>
+                <tr><td>UI-фреймворк</td><td>Avalonia UI</td></tr>
+                <tr><td>Графика</td><td>SkiaSharp</td></tr>
+                <tr><td>Пакеты</td><td>.rodnik (tar.xz)</td></tr>
+                <tr><td>Лицензия SDK</td><td>MIT</td></tr>
+            </table>
+            
+            <p style="text-align: center; margin-top: 40px;">SDK будет доступен в ноябре 2026</p>
+            <div style="text-align: center;"><a href="https://github.com/rodnik-os" class="btn btn-primary">GitHub проекта</a></div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container"><p>© 2026 ООО «Родник». Сделано в России 🇷🇺</p></div>
+    </footer>
+</body>
+</html>

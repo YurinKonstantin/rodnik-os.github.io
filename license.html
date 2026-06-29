@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лицензии — Родник OS</title>
+    <style>
+        :root {
+            --bg: #0a0e14; --surface: #141b22; --border: #2a3644;
+            --text: #e6edf3; --text-dim: #8b949e; --accent: #58a6ff; --accent2: #3fb950;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
+        nav { background: rgba(10,14,20,0.9); border-bottom: 1px solid var(--border); padding: 16px 0; }
+        nav .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 26px; font-weight: 800; text-decoration: none; background: linear-gradient(135deg, #58a6ff 0%, #3fb950 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .nav-links { display: flex; gap: 24px; }
+        .nav-links a { color: var(--text-dim); text-decoration: none; font-size: 15px; }
+        .nav-links a:hover { color: var(--text); }
+        section { padding: 80px 0; }
+        h1 { font-size: 42px; text-align: center; margin-bottom: 16px; }
+        h2 { font-size: 28px; margin: 40px 0 20px; }
+        .subtitle { text-align: center; color: var(--text-dim); font-size: 18px; margin-bottom: 60px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+        .card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 30px; }
+        .card h3 { font-size: 22px; margin-bottom: 16px; }
+        .price { font-size: 36px; font-weight: 800; margin: 16px 0; }
+        .price span { font-size: 16px; color: var(--text-dim); }
+        .card ul { padding-left: 20px; color: var(--text-dim); margin: 20px 0; }
+        .card ul li { margin-bottom: 8px; }
+        .btn { padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; display: block; text-align: center; transition: all 0.3s; }
+        .btn-primary { background: var(--accent2); color: #000; }
+        .btn-accent { background: var(--accent); color: #000; }
+        .btn-outline { border: 2px solid var(--border); color: var(--text); }
+        .badge { display: inline-block; padding: 4px 12px; border-radius: 4px; font-size: 12px; font-weight: 700; margin-bottom: 12px; }
+        .badge-business { background: var(--accent); color: #000; }
+        .badge-early { background: var(--accent2); color: #000; }
+        footer { border-top: 1px solid var(--border); padding: 40px 0; text-align: center; color: var(--text-dim); font-size: 14px; }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">Родник OS</a>
+            <div class="nav-links">
+                <a href="/">Главная</a>
+                <a href="developer.html">Разработчикам</a>
+            </div>
+        </div>
+    </nav>
+    
+    <section>
+        <div class="container">
+            <h1>Лицензии и цены</h1>
+            <p class="subtitle">Прозрачные условия для дома и бизнеса</p>
+            
+            <div class="grid-3">
+                <div class="card">
+                    <h3>🏠 Домашняя (Home)</h3>
+                    <div class="price">0 ₽ <span>навсегда</span></div>
+                    <ul>
+                        <li>До 3 устройств</li>
+                        <li>Обновления безопасности</li>
+                        <li>Магазин приложений</li>
+                        <li>Яндекс.Диск 1 ТБ</li>
+                    </ul>
+                    <a href="/" class="btn btn-outline">Скачать (скоро)</a>
+                </div>
+                
+                <div class="card" style="border-color: var(--accent);">
+                    <div class="badge badge-business">БИЗНЕС</div>
+                    <h3>🏢 Профессиональная (Pro)</h3>
+                    <div class="price">5 000 ₽ <span>/год</span></div>
+                    <ul>
+                        <li>Всё из Home</li>
+                        <li>До 50 устройств</li>
+                        <li>Приоритетная поддержка 24ч</li>
+                        <li>ГОСТ-сертификаты</li>
+                        <li>Kaspersky Security Center</li>
+                    </ul>
+                    <a href="mailto:sales@rodnik-os.ru" class="btn btn-accent">Запросить счёт</a>
+                </div>
+                
+                <div class="card">
+                    <div class="badge badge-early">EARLY ADOPTER</div>
+                    <h3>👨‍💻 Для первых пользователей (Dev)</h3>
+                    <div class="price">0 ₽ <span>навсегда</span></div>
+                    <ul>
+                        <li>Все функции Pro</li>
+                        <li>Навсегда бесплатно</li>
+                        <li>Условие: авторизация до 01.01.2027</li>
+                    </ul>
+                    <a href="/" class="btn btn-primary">Участвовать</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <p>© 2026 ООО «Родник». Сделано в России 🇷🇺</p>
+        </div>
+    </footer>
+</body>
+</html> 
